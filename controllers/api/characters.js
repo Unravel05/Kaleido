@@ -5,6 +5,7 @@ module.exports = {
     create,
     delete: handleDeleteCharacter,
     edit: handleEditCharacter,
+    get: getCharacterById
 }
 
 async function create(req, res) {
@@ -41,5 +42,17 @@ async function handleEditCharacter(req, res) {
         res.json(character)
     } catch (err) {
         res.status(404).json(err)
+    }
+}
+
+async function getCharacterById(req, res) {
+    try {
+        const character = await Character.findById(req.params.characterId);
+        if (!character) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
+        res.json(character);
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
     }
 }

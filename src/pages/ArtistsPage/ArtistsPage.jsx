@@ -4,6 +4,8 @@ function ArtistsPage() {
   return (
     <div>
       <h1>Artist</h1>
+
+      
     </div>
   )
 }

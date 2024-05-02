@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const artistSchema = new Schema({
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: {type: String, required: true},
     tags: [String],
     imageUrl: {type: String, required: true},

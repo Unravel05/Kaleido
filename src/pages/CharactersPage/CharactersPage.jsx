@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import CreateCharacter from '../../components/CreateCharacter/CreateCharacter'
 import * as character from '../../utilities/characters-api'
 import { Link } from "react-router-dom";
+import EditCharacter from "../../components/EditCharacter/EditCharacter";
 
-function CharactersPage() {
-    const [characters, setCharacters] = useState([]);
+function CharactersPage({characters, setCharacters, handleEditCharacter}) {
+    const [characterData, setCharacterData] = React.useState(null)
 
     useEffect(() => {
         fetchCharacters();
@@ -38,19 +39,9 @@ function CharactersPage() {
       }
     };
 
-  const handleEditCharacter = async (characterId, updatedCharacter) => {
-    try {
-        await character.editCharacter(characterId, updatedCharacter);
-        setCharacters(prevCharacters =>
-            prevCharacters.map(character =>
-                character._id === characterId ? updatedCharacter : character
-            )
-        );
-    } catch (error) {
-        console.error('Error editing character:', error);
-    }
-  }
-    console.log(characters)
+    const handleSave = (updatedCharacter) => {
+        setCharacterData(updatedCharacter);
+      };
     return (
         <div>
             <h1>Characters!</h1>
@@ -61,16 +52,17 @@ function CharactersPage() {
             <div>
                 {characters.map((character, index) => (
                     <div key={index}>
-                        <p>{character.name}</p>
-                        <p>Tags: {character.tags}</p>
-                        <p>Personality: {character.personality}</p>
-                        <p>Relashionships: {character.relationship}</p>
-                        <p>History: {character.history}</p>
-                        <p>Images: <img src={character.imageUrl} alt="" /></p>
+                        <h1>Character Details</h1>
+                            <p>Name: {character.name}</p>
+                            <p>Tags: {character.tags}</p>
+                            <p>Personality: {character.personality}</p>
+                            <p>Relationships: {character.relationships}</p>
+                            <p>History: {character.history}</p>
+                            <p>Images: <img src={character.imageUrl} alt={character.name} style={{ maxWidth: '50%' }} /></p>
                     <button onClick={()=> deleteCharacter(character._id)}>Delete</button>
-                    <Link to={`edit/${character._id}`}><button>Edit</button></Link>
-
+                    <Link to={`/characters/edit/${character._id}`}><button>Edit</button></Link>
                     
+                    {characterData && <EditCharacter character={characterData} handleEditCharacter={handleEditCharacter} />}
                     </div>
                 ))}
             </div>

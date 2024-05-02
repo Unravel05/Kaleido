@@ -12,7 +12,7 @@ export async function deleteCharacter(id) {
     return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
 }
 
-export async function editCharacter(character, id) {
+export async function editCharacter(id, character) {
     return sendRequest(`${BASE_URL}/${id}`, 'PUT', character)
 }
 
