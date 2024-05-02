@@ -8,14 +8,16 @@ export default function NavBar({user, setUser}) {
   }
 
   return (
-    <nav>
-      <Link to="/orders">Order History</Link>
+    <div className='nav'>
+     <nav> <Link to="/"><img src="https://i.imgur.com/CnL6mkj.png" alt="Logo" className="logo" />
+    </Link>
+      <span>Welcome {user.name}</span>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
+      <Link to="/artits">Artist</Link>
       &nbsp; | &nbsp;
-      <span>Welcome {user.name}!</span>
+      <Link to="/characters">Characters</Link>
       &nbsp; | &nbsp;
       <Link to="" onClick={handleLogOut}>Log Out</Link>
-    </nav>
+    </nav></div>
   );
 }

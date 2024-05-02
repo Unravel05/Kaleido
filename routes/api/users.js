@@ -15,4 +15,6 @@ router.get('/check-token', usersCtrl.checkToken);
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login)
 
+router.post('/artist', usersCtrl.create)
+
 module.exports = router;
