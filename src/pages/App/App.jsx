@@ -6,7 +6,7 @@ import ArtistsPage from '../ArtistsPage/ArtistsPage'
 import CharactersPage from '../CharactersPage/CharactersPage'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from '../../utilities/users-service';
-import EditCharacter from '../../components/EditCharacter/EditCharacter';
+import EditPage from '../EditPage/EditPage';
 
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
               {/* Route components in here */}
               <Route path="/artits" element={<ArtistsPage />} />
               <Route path="/characters" element={<CharactersPage />} />
-              <Route path="/edit/:id" element={<EditCharacter/>} />
+              <Route path="character/edit/:id" element={<EditPage/>} />
             </Routes>
           </>
           :

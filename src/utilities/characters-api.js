@@ -15,3 +15,7 @@ export async function deleteCharacter(id) {
 export async function editCharacter(character, id) {
     return sendRequest(`${BASE_URL}/${id}`, 'PUT', character)
 }
+
+export async function getCharacterById(characterId) {
+  return sendRequest(`${BASE_URL}/${characterId}`);
+}

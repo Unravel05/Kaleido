@@ -10,4 +10,6 @@ router.delete('/:id', characterCrtl.delete);
 
 router.put('/:id', characterCrtl.edit)
 
+router.put('/characters/edit/:id', characterCrtl.edit)
+
 module.exports = router;
