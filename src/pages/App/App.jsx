@@ -34,7 +34,7 @@ export default function App() {
     <main className="App">
       { user ?
           <>
-            <NavBar user={user} setUser={setUser}/>
+            <NavBar className="navLinks" user={user} setUser={setUser}/>
             <Routes>
               {/* Route components in here */}
               <Route path="/artits" element={<ArtistsPage />} />

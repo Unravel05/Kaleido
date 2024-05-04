@@ -7,7 +7,7 @@ const characterSchema = new mongoose.Schema({
     name: {type: String, required: true},
     tags: [String],
     personality: {type: String, required: true},
-    relationship: {type: String, required: true},
+    relationships: {type: String, required: true},
     history: {type: String, require: true},
     imageUrl: {type: String, required: true},
 })

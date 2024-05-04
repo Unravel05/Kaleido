@@ -12,7 +12,7 @@ async function create(req, res) {
     try {
         req.body.user = req.user
         const character = await Character.create(req.body)
-        res.json(character)
+        res.status(201).json(character)
     } catch (err) {
         res.status(400).json(err)
     }
@@ -38,8 +38,11 @@ async function handleDeleteCharacter(req, res) {
 
 async function handleEditCharacter(req, res) {
     try {
-        const character = await Character.findByIdAndUpdate(req.params.id)
-        res.json(character)
+        console.log(req.params.id)
+        const character = await Character.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        console.log(character)
+        res.status(200).json(character)
+        // res.send(character)
     } catch (err) {
         res.status(404).json(err)
     }
