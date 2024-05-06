@@ -20,7 +20,7 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        const character = await Character.find({})
+        const character = await Character.find({}).populate('user')
         res.json(character)
     } catch (err) {
         res.status(404).json(err)

@@ -6,5 +6,10 @@ router.post('/', artistCrtl.create);
 
 router.get('/', artistCrtl.index);
 
+router.delete('/:id', artistCrtl.delete);
+
+router.put('/:id', artistCrtl.edit)
+
+router.get('/:artistId', artistCrtl.get);
 
 module.exports = router;

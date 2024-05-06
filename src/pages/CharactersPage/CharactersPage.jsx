@@ -4,7 +4,6 @@ import * as character from '../../utilities/characters-api';
 import { Link } from "react-router-dom";
 import EditCharacter from "../../components/EditCharacter/EditCharacter";
 import Button from '@mui/material/Button';
-import { brown } from "@mui/material/colors";
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -16,11 +15,8 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PersonIcon from '@mui/icons-material/Person';
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
@@ -83,12 +79,12 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
         setExpandedHistoryId(expandedHistoryId === cardId ? null : cardId);
     };
 
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+    const StyledCard = styled(Card)(({ theme }) => ({
+        backgroundColor: '#B28D62',
+    }));
+
+    const StyledIconButton = styled(IconButton)(({ theme }) => ({
+        color: '#5E3914',
     }));
 
     return (
@@ -99,51 +95,51 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
             <Grid container spacing={3} padding={1}>
                 {characters.map((character, index) => (
                     <Grid item key={character._id} xs={12} sm={6} md={4} lg={3}>
-                        <Card sx={{ maxWidth: 345 }}>
+                        <StyledCard>
                             <CardHeader
                                 action={
-                                    user._id === character.user &&
+                                    user._id === character.user._id &&
                                     <Link to={`/characters/edit/${character._id}`}>
-                                        <IconButton aria-label="settings">
+                                        <StyledIconButton aria-label="settings">
                                             <MoreVertIcon />
-                                        </IconButton>
+                                        </StyledIconButton>
                                     </Link>
                                 }
                                 title={character.name}
-                                subheader={character.tags}
+                                subheader={character.user.name}
                             />
                             <CardMedia
                                 component="img"
                                 image={character.imageUrl}
                             />
                             <CardContent>
-                                <Typography variant="body2" color="text.secondary">{character.relationships}</Typography>
+                                <Typography variant="body2" color="text.secondary">{character.tags}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
                                 {user._id === character.user &&
-                                    <IconButton onClick={() => deleteCharacter(character._id)} aria-label="delete">
+                                    <StyledIconButton onClick={() => deleteCharacter(character._id)} aria-label="delete">
                                         <DeleteForeverRoundedIcon />
-                                    </IconButton>
+                                    </StyledIconButton>
                                 }
                                 <Link to={character.sourceUrl} target="_blank" rel="noopener noreferrer">
-                                    <IconButton aria-label="share">
+                                    <StyledIconButton aria-label="share">
                                         <ShareIcon />
-                                    </IconButton>
+                                    </StyledIconButton>
                                 </Link>
-                                <IconButton
+                                <StyledIconButton
                                     onClick={() => handleExpandPersonalityClick(character._id)}
                                     aria-expanded={expandedPersonalityId === character._id}
                                     aria-label="show personality"
                                 >
                                     <PersonIcon />
-                                </IconButton>
-                                <IconButton
+                                </StyledIconButton>
+                                <StyledIconButton
                                     onClick={() => handleExpandHistoryClick(character._id)}
                                     aria-expanded={expandedHistoryId === character._id}
                                     aria-label="show history"
                                 >
                                     <HistoryEduIcon />
-                                </IconButton>
+                                </StyledIconButton>
                             </CardActions>
                             <Collapse in={expandedPersonalityId === character._id} timeout="auto" unmountOnExit>
                                 <CardContent>  
@@ -157,7 +153,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
                                     <Typography paragraph>{character.history}</Typography>
                                 </CardContent>
                             </Collapse>
-                        </Card>
+                        </StyledCard>
                         {characterData && <EditCharacter character={characterData} handleEditCharacter={handleEditCharacter} />}
                     </Grid>
                 ))}

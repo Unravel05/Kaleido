@@ -9,11 +9,14 @@ import { getUser } from '../../utilities/users-service';
 import EditCharacter from '../../components/EditCharacter/EditCharacter';
 import * as charactersApi from '../../utilities/characters-api'
 import EditPage from '../EditPage/EditPage';
+import EditArtistPage from '../EditArtistPage/EditArtistPage';
+import * as artistApi from '../../utilities/artists-api'
 
 
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [characters, setCharacters] = useState([]);
+  const [artists, setArtists] = useState([]);
 
 
   const handleEditCharacter = async (characterId, updatedCharacter) => {
@@ -23,6 +26,20 @@ export default function App() {
         setCharacters(prevCharacters =>
             prevCharacters.map(char =>
                 char._id === characterId ? {...char, ...updatedCharacter} : char
+            )
+        );
+    } catch (error) {
+        console.error('Error editing character:', error);
+    }
+  };
+  
+  const handleEditArtist = async (artistId, updatedArtist) => {
+    console.log(artistId)
+    try {
+        await artistApi.editArtist(artistId, updatedArtist);
+        setArtists(prevArtists =>
+            prevArtists.map(art =>
+                art._id === artistId ? {...art, ...updatedArtist} : art
             )
         );
     } catch (error) {
@@ -40,6 +57,7 @@ export default function App() {
               <Route path="/artists" element={<ArtistsPage />} />
               <Route path="/characters" element={<CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>} />
               <Route path="/characters/edit/:characterId" element={<EditPage handleEditCharacter={handleEditCharacter}/>} />
+              <Route path="/artists/edit/:artistId" element={<EditArtistPage handleEditArtist={handleEditArtist}/>} />
             </Routes>
           </>
           :

@@ -20,7 +20,7 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        const artist = await Artist.find({})
+        const artist = await Artist.find({}).populate('user')
         res.json(artist)
     } catch (err) {
         res.status(404).json(err)
@@ -50,9 +50,9 @@ async function handleEditArtist(req, res) {
 
 async function getArtistById(req, res) {
     try {
-        const artist = await Artist.findById(req.params.characterId);
+        const artist = await Artist.findById(req.params.artistId);
         if (!artist) {
-            return res.status(404).json({ error: 'Character not found' });
+            return res.status(404).json({ error: 'Artist not found' });
         }
         res.json(artist);
     } catch (err) {
