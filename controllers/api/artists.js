@@ -5,6 +5,7 @@ module.exports = {
     create,
     delete: handleDeleteArtist,
     edit: handleEditArtist,
+    get: getArtistById
 }
 
 async function create(req, res) {
@@ -29,18 +30,32 @@ async function index(req, res) {
 async function handleDeleteArtist(req, res) {
     try {
         const artist = await Artist.findByIdAndDelete(req.params.id)
-        res.json(artist)
-    } catch (error) {
+        res.json('delete it')
+    } catch (err) {
         res.status(404).json(err)
     }
 }
 
 async function handleEditArtist(req, res) {
     try {
-        const artist = await Artist.findByIdAndUpdate(req.params.body)
-        res.json(artist)
-    } catch (error) {
+        console.log(req.params.id)
+        const artist = await Artist.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        console.log(artist)
+        res.status(200).json(artist)
+        // res.send(character)
+    } catch (err) {
         res.status(404).json(err)
     }
 }
 
+async function getArtistById(req, res) {
+    try {
+        const artist = await Artist.findById(req.params.characterId);
+        if (!artist) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
+        res.json(artist);
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}

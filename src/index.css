@@ -31,11 +31,7 @@ body {
 .logo {
   float: left;
   margin-right: 10px; 
-  width: 5%;
+  width: 20%;
   mix-blend-mode: multiply;
 }
 
-.nav {
-  text-align: right;
-  color: lavender;
-}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import * as characterAPI from '../../utilities/characters-api'
-import './createCharacter.css'
+import * as characterAPI from '../../utilities/characters-api';
+import './createCharacter.css';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { InputAdornment } from '@mui/material';
 
 
 function CreateCharacter({ userId }) {
@@ -13,11 +15,10 @@ function CreateCharacter({ userId }) {
         personality: '',
         relationships: '',
         history: '',
-        imageUrl: [''],
         user: userId 
     });
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setCharacter(prevCharacter => ({
             ...prevCharacter,
@@ -25,21 +26,7 @@ function CreateCharacter({ userId }) {
         }));
     }
 
-    function handleAddImage() {
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            imageUrls: [...prevCharacter.imageUrls, '']
-        }));
-    }
-
-    function handleRemoveImage(index) {
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            imageUrls: prevCharacter.imageUrls.filter((_, i) => i !== index)
-        }));
-    }
-
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
         characterAPI.saveCharacter(character)
         .then(() => {
@@ -53,16 +40,30 @@ function CreateCharacter({ userId }) {
     return (
         <div className="ficha">
             <form onSubmit={handleSubmit}>
-                <p>Name: <input type="text" name="name" value={character.name} onChange={handleChange} /></p>
-                <p>Tags: <input type="text" value={character.tags} name="tags" className="tags-input" onChange={handleChange}/></p>
-                <p>Personality: <input type="text" name="personality" value={character.personality} onChange={handleChange} /></p>
-                <p>Relationships: <input type="text" name='relationships' value={character.relationships} onChange={handleChange}/></p>
-                <p>History: <input type="text" name="history" value={character.history} onChange={handleChange} /></p>
-                <p>Images: <input type="text" placeholder="Link" name="imageUrl" value={character.imageUrl} onChange={handleChange} /></p>
+                <Box sx={{ mb: 2 }}>
+                        
+                    <TextField label="Name" type="text" name="name" value={character.name} onChange={handleChange} fullWidth />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="Tags" type="text" value={character.tags} name="tags" className="tags-input" onChange={handleChange} fullWidth />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="Personality" type="text" name="personality" value={character.personality} onChange={handleChange} fullWidth />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="Relationships" type="text" name='relationships' value={character.relationships} onChange={handleChange} fullWidth />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="History" type="text" name="history" value={character.history} onChange={handleChange} fullWidth />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="Image URL" type="text" name="imageUrl" value={character.imageUrl} onChange={handleChange} fullWidth sx={{ bgcolor: 'lightbrown', color: 'white' }} />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                    <TextField label="Source URL" type="text" name="sourceUrl" value={character.sourceUrl} onChange={handleChange} fullWidth sx={{ bgcolor: 'lightbrown', color: 'white' }} />
+                </Box>
                 
-                <Button onClick={handleAddImage} variant="contained">Add Image</Button>
-
-                <Button variant="contained" type="submit" >Create your own!</Button>
+                <Button variant="contained" type="submit">Create your own!</Button>
             </form>
         </div>
     );

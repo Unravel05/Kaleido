@@ -1,13 +1,41 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const bcrypt = require('bcrypt')
+
 require('dotenv').config()
 
 module.exports = {
+  index,
   create,
   login,
-  checkToken
+  checkToken,
+  getByName,
 };
+
+
+
+async function getByName(req, res) {
+  try {
+    const user = await User.findOne({ name: req.params.name });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user by name:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
+
+
+async function index(req, res) {
+  try {
+      const user = await User.find({})
+      res.json(user)
+  } catch (err) {
+      res.status(404).json(err)
+  }
+}
 
 async function login(req, res) {
     try {
@@ -25,7 +53,6 @@ async function login(req, res) {
         res.status(400).json(err)
     }
 }
-
 
 
 async function create(req, res) {
@@ -55,3 +82,4 @@ function createJWT(user) {
     { expiresIn: '24h' }
   );
 }
+

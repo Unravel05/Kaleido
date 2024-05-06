@@ -1,59 +1,100 @@
-import { Component } from 'react';
-import { signUp } from '../../utilities/users-service';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-export default class SignUpForm extends Component {
-  state = {
-    name: '',
+function SignUp() {
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
-    confirm: '',
-    error: ''
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-      error: ''
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you can submit the form data to your backend
+    console.log(formData);
+    // Reset form fields
+    setFormData({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
     });
   };
 
-  handleSubmit = async (evt) => {
-    evt.preventDefault();
-    try {
-      const {name, email, password} = this.state;
-      const formData = {name, email, password};
-      // The promise returned by the signUp service
-      // method will resolve to the user object included
-      // in the payload of the JSON Web Token (JWT)
-      const user = await signUp(formData);
-      // Baby step!
-      this.props.setUser(user)
-    } catch {
-      // An error occurred
-      // Probably due to a duplicate email
-      this.setState({ error: 'Sign Up Failed - Try Again' });
-    }
-  };
-
-  render() {
-    const disable = this.state.password !== this.state.confirm;
-    return (
-      <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
-            <label>Email</label>
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-            <label>Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-            <label>Confirm</label>
-            <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>SIGN UP</button>
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
+      <Button variant="contained" onClick={() => setShowSignUpForm(!showSignUpForm)}>
+        {showSignUpForm ? 'Sign Up' : 'Sign Up!'}
+      </Button>
+      {showSignUpForm && (
+        <>
+          <Typography variant="h5" gutterBottom>Sign Up</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <Button type="submit" variant="contained" color="primary" size="large" fullWidth sx={{ mt: 2 }}>
+              Sign Up
+            </Button>
           </form>
-        </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
-      </div>
-    );
-  }
+          <Typography variant="body1" mt={2}>
+            Already have an account? <Link to="/login">Log in</Link>
+          </Typography>
+        </>
+      )}
+    </Box>
+  );
 }
+
+export default SignUp;

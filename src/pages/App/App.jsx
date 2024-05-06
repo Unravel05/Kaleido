@@ -37,7 +37,7 @@ export default function App() {
             <NavBar className="navLinks" user={user} setUser={setUser}/>
             <Routes>
               {/* Route components in here */}
-              <Route path="/artits" element={<ArtistsPage />} />
+              <Route path="/artists" element={<ArtistsPage />} />
               <Route path="/characters" element={<CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>} />
               <Route path="/characters/edit/:characterId" element={<EditPage handleEditCharacter={handleEditCharacter}/>} />
             </Routes>

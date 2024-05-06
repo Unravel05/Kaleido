@@ -1,7 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
   const [editedCharacter, setEditedCharacter] = useState(character);
@@ -28,16 +29,82 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
   return (
     <div className="Edit">
       <form onSubmit={handleSubmit}>
-        <p>Name: <input type="text" name="name" value={editedCharacter.name} onChange={handleChange} /></p>
-        <p>Tags: <input type="text" name="tags" value={editedCharacter.tags} onChange={handleChange} /></p>
-        <p>Personality: <input type="text" name="personality" value={editedCharacter.personality} onChange={handleChange} /></p>
-        <p>Relationships: <input type="text" name="relationships" value={editedCharacter.relationships} onChange={handleChange} /></p>
-        <p>History: <input type="text" name="history" value={editedCharacter.history} onChange={handleChange} /></p>
-        <p>Images: <input type="text" name="imageUrl" value={editedCharacter.imageUrl} onChange={handleChange} /></p>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Name" 
+            type="text" 
+            name="name" 
+            value={editedCharacter.name} 
+            onChange={handleChange} 
+            fullWidth 
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Tags" 
+            type="text" 
+            name="tags" 
+            value={editedCharacter.tags} 
+            onChange={handleChange} 
+            fullWidth 
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Personality" 
+            type="text" 
+            name="personality" 
+            value={editedCharacter.personality} 
+            onChange={handleChange} 
+            fullWidth 
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Relationships" 
+            type="text" 
+            name="relationships" 
+            value={editedCharacter.relationships} 
+            onChange={handleChange} 
+            fullWidth 
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="History" 
+            type="text" 
+            name="history" 
+            value={editedCharacter.history} 
+            onChange={handleChange} 
+            fullWidth 
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Image URL" 
+            type="text" 
+            name="imageUrl" 
+            value={editedCharacter.imageUrl} 
+            onChange={handleChange} 
+            fullWidth 
+            sx={{ bgcolor: 'lightbrown', color: 'white' }}
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <TextField 
+            label="Source Url" 
+            type="text" 
+            name="sourceUrl" 
+            value={editedCharacter.sourceUrl} 
+            onChange={handleChange} 
+            fullWidth 
+            sx={{ bgcolor: 'lightbrown', color: 'white' }}
+          />
+        </Box>
         
-        <button type="submit">Save Changes</button>
-
-        {/* I put <Link to='/characters'></Link> and it didn't worked out */}
+        <Button variant="contained" type="submit">Save Changes</Button>
+        {/* If you want to use Link for redirection */}
+        {/* <Button component={Link} to="/characters" variant="contained">Cancel</Button> */}
       </form>
     </div>
   );

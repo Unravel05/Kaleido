@@ -13,8 +13,11 @@ router.get('/check-token', usersCtrl.checkToken);
 
 // POST /api/users (create a user - sign up)
 router.post('/', usersCtrl.create);
+router.post('/', usersCtrl.index)
+// GET /api/users/name/:name
+router.get('/:name', ensureLoggedIn, usersCtrl.getByName);
+
 router.post('/login', usersCtrl.login)
 
-router.post('/artist', usersCtrl.create)
 
 module.exports = router;

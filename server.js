@@ -24,6 +24,7 @@ const port = process.env.PORT || 3001;
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/characters', require('./routes/characters'));
+app.use('/api/artists', require('./routes/artists'));
 
 
 // The following "catch all" route (note the *) is necessary

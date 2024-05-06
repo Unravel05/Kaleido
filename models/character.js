@@ -10,6 +10,7 @@ const characterSchema = new mongoose.Schema({
     relationships: {type: String, required: true},
     history: {type: String, require: true},
     imageUrl: {type: String, required: true},
+    sourceUrl: {type: String, require: true},
 })
 
 module.exports = mongoose.model('Character', characterSchema)
