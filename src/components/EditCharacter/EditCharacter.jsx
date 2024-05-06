@@ -87,22 +87,22 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.imageUrl} 
             onChange={handleChange} 
             fullWidth 
-            sx={{ bgcolor: 'lightbrown', color: 'white' }}
+            sx={{ color: '#5E3914' }}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Source Url" 
+            label="Source URL" 
             type="text" 
             name="sourceUrl" 
             value={editedCharacter.sourceUrl} 
             onChange={handleChange} 
             fullWidth 
-            sx={{ bgcolor: 'lightbrown', color: 'white' }}
+            sx={{ color: '#5E3914' }}
           />
         </Box>
         
-        <Button variant="contained" type="submit">Save Changes</Button>
+        <Button variant="contained" type="submit" sx={{ mb: 2, bgcolor: '#5E3914', color: 'white' }}>Save Changes</Button>
         {/* If you want to use Link for redirection */}
         {/* <Button component={Link} to="/characters" variant="contained">Cancel</Button> */}
       </form>

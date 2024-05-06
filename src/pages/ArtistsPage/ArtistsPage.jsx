@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import NotesIcon from '@mui/icons-material/Notes';
 import Grid from '@mui/material/Grid';
+import EditArtist from '../../components/EditArtist/EditArtist';
 
 function ArtistsPage({ handleEditArtist }) {
   const [artists, setArtists] = useState([]);
@@ -84,7 +85,7 @@ function ArtistsPage({ handleEditArtist }) {
         <AddCircleIcon sx={{ mr: 1, color: "#5E3914" }} /> {/* Add margin to the right of the icon */}
         Add Art
       </Button>
-      {showCreateForm && <CreateArtist handleSubmitartist={handleSubmitArtist} handleEditArtist={handleEditArtist} onEditSuccess={() => window.location.href = '/artists'}/>}
+      {showCreateForm && <CreateArtist handleSubmitArtist={handleSubmitArtist} handleEditArtist={handleEditArtist} onEditSuccess={() => window.location.href = '/artists'}/>}
       <Grid container spacing={3} padding={1}>
         {artists.map((artist, index) => (
           <Grid item key={artist._id} xs={12} sm={6} md={4} lg={3}>
@@ -106,7 +107,7 @@ function ArtistsPage({ handleEditArtist }) {
                 image={artist.imageUrl}
               />
               <CardContent>
-                <Typography variant="body2" color="text.secondary">{artist.relationships}</Typography>
+                <Typography variant="body2" color="text.secondary">{artist.tags}</Typography>
               </CardContent>
               <CardActions disableSpacing>
                 {user._id === artist.user._id &&
@@ -133,6 +134,7 @@ function ArtistsPage({ handleEditArtist }) {
                 </CardContent>
               </Collapse>
             </Card>
+            {artistData && <EditArtist artist={artistData} handleEditArtist={handleEditArtist} />}
           </Grid>
         ))}
       </Grid>
