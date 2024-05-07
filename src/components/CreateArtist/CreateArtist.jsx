@@ -96,7 +96,7 @@ function CreateArtist({ userId }) {
                         fullWidth
                     />
                 </Box>
-                <Button variant="contained" type="submit">Create your own!</Button>
+                <Button variant="contained" type="submit" sx={{ backgroundColor: '#5E3914', color: 'white' }} >Create your own!</Button>
             </form>
         </div>
     );

@@ -90,7 +90,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
     return (
         <div>
             <h1>Characters!</h1>
-            <Button onClick={() => setShowCreateForm(!showCreateForm)}><AddCircleIcon/>Add Character</Button>
+            <Button onClick={() => setShowCreateForm(!showCreateForm)} sx={{ backgroundColor: '#5E3914', color: 'white' }}  ><AddCircleIcon/>Add Character</Button>
             {showCreateForm && <CreateCharacter handleSubmitCharacter={handleSubmitCharacter} handleEditCharacter={handleEditCharacter} onEditSuccess={() => window.location.href = '/characters'}/>}
             <Grid container spacing={3} padding={1}>
                 {characters.map((character, index) => (
