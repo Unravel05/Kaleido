@@ -38,6 +38,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
             value={editedArtist.title}
             onChange={handleChange}
             fullWidth
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ marginBottom: 2 }}>
@@ -49,6 +50,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
             className="tags-input"
             onChange={handleChange}
             fullWidth
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ marginBottom: 2 }}>
@@ -60,6 +62,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
             className="tags-input"
             onChange={handleChange}
             fullWidth
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ marginBottom: 2 }}>
@@ -71,7 +74,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
             value={editedArtist.imageUrl}
             onChange={handleChange}
             fullWidth
-            sx={{ color: '#5E3914' }}
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ marginBottom: 2 }}>
@@ -83,7 +86,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
             value={editedArtist.sourceUrl}
             onChange={handleChange}
             fullWidth
-            sx={{  color: '#5E3914' }}
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         

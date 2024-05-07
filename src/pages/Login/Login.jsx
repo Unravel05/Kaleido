@@ -1,9 +1,12 @@
 import React from 'react'
+import LoginForm from "../../components/LoginForm/LoginForm";
 
-function Login() {
+
+function Login({setUser}) {
   return (
     <div>
-      <Login />
+    <h1>Log In</h1>
+      <LoginForm setUser={setUser}/>
     </div>
   )
 }

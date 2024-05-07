@@ -24,6 +24,12 @@ body {
   background-color: var(--tan-4);
   padding: 2vmin;
   height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('https://i.imgur.com/Aujgh4N.jpeg');
+  background-size:cover;
+  background-position: center;
 }
 
 
@@ -34,4 +40,10 @@ body {
   width: 20%;
   mix-blend-mode: multiply;
 }
+
+.logos {
+  mix-blend-mode: multiply;
+}
+
+/* index.css */
 

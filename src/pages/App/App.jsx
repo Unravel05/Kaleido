@@ -11,6 +11,11 @@ import * as charactersApi from '../../utilities/characters-api'
 import EditPage from '../EditPage/EditPage';
 import EditArtistPage from '../EditArtistPage/EditArtistPage';
 import * as artistApi from '../../utilities/artists-api'
+import MainPage from '../MainPage/MainPage';
+import Login from '../Login/Login';
+
+
+
 
 
 export default function App() {
@@ -54,6 +59,7 @@ export default function App() {
             <NavBar className="navLinks" user={user} setUser={setUser}/>
             <Routes>
               {/* Route components in here */}
+              <Route path="/" element={<MainPage />} />
               <Route path="/artists" element={<ArtistsPage />} />
               <Route path="/characters" element={<CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>} />
               <Route path="/characters/edit/:characterId" element={<EditPage handleEditCharacter={handleEditCharacter}/>} />
@@ -61,7 +67,19 @@ export default function App() {
             </Routes>
           </>
           :
-          <AuthPage setUser={setUser}/>
+          <>
+          <NavBar className="navLinks" user={user} setUser={setUser}/>
+          
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<Login setUser={setUser}/>} />
+            <Route path="/signup" element={<AuthPage setUser={setUser}/>} />
+            <Route path="/artists" element={<ArtistsPage />} />
+            <Route path="/characters" element={<CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>} />
+          </Routes>
+          </>
+          // <AuthPage setUser={setUser}/>
+          
       }
     </main>
   );

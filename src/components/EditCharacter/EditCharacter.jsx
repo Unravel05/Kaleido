@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
-function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
+function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
   const [editedCharacter, setEditedCharacter] = useState(character);
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,11 +20,9 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
     e.preventDefault();
     
     await handleEditCharacter(character._id, editedCharacter);
-    
-    // Call the onEditSuccess callback to redirect
-    if (onEditSuccess) {
-      onEditSuccess();
-    }
+    navigate('/characters')
+    // Call the onSaveSuccess callback to handle navigation after saving changes
+    // onSaveSuccess();
   };
 
   return (
@@ -37,6 +36,8 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.name} 
             onChange={handleChange} 
             fullWidth 
+            sx={{ backgroundColor: '#C8A382'}}
+            
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -47,6 +48,7 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.tags} 
             onChange={handleChange} 
             fullWidth 
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -57,6 +59,7 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.personality} 
             onChange={handleChange} 
             fullWidth 
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -67,6 +70,7 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.relationships} 
             onChange={handleChange} 
             fullWidth 
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -77,6 +81,7 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.history} 
             onChange={handleChange} 
             fullWidth 
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -87,7 +92,7 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.imageUrl} 
             onChange={handleChange} 
             fullWidth 
-            sx={{ color: '#5E3914' }}
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         <Box sx={{ mb: 2 }}>
@@ -98,13 +103,11 @@ function EditCharacter({ character, handleEditCharacter, onEditSuccess }) {
             value={editedCharacter.sourceUrl} 
             onChange={handleChange} 
             fullWidth 
-            sx={{ color: '#5E3914' }}
+            sx={{ backgroundColor: '#C8A382'}}
           />
         </Box>
         
-        <Button variant="contained" type="submit" sx={{ mb: 2, bgcolor: '#5E3914', color: 'white' }}>Save Changes</Button>
-        {/* If you want to use Link for redirection */}
-        {/* <Button component={Link} to="/characters" variant="contained">Cancel</Button> */}
+        <Button variant="contained" type="submit"  sx={{ mb: 2, bgcolor: '#5E3914', color: 'white' }} >Save Changes</Button>
       </form>
     </div>
   );

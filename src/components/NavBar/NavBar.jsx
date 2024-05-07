@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 export default function NavBar({ user, setUser }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -40,7 +42,7 @@ export default function NavBar({ user, setUser }) {
           color="inherit"
           sx={{ color: '#000000' }} // Black text color
         >
-          Welcome {user.name}
+          {user ? `Welcome ${user.name}` : <MenuIcon/>}
         </Button>
         <Menu 
           anchorEl={anchorEl}
@@ -55,14 +57,7 @@ export default function NavBar({ user, setUser }) {
           >
             Artist
           </MenuItem>
-          <MenuItem 
-            component={Link} 
-            to={`/user/${user.name}`} 
-            onClick={handleMenuClose} 
-            sx={{ bgcolor: "#DCCDB5", '&:hover': { bgcolor: "#B28D62" } }}
-          >
-            User
-          </MenuItem>
+          
           <MenuItem 
             component={Link} 
             to="/characters" 

@@ -21,6 +21,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PersonIcon from '@mui/icons-material/Person';
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 import * as userService from '../../utilities/users-service';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
     const [characterData, setCharacterData] = useState(null);
@@ -81,22 +84,36 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
 
     const StyledCard = styled(Card)(({ theme }) => ({
         backgroundColor: '#B28D62',
+        maxWidth: '300px',
+        margin: '1rem 0.5rem 1rem 0rem',
     }));
 
     const StyledIconButton = styled(IconButton)(({ theme }) => ({
         color: '#5E3914',
     }));
 
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
+
     return (
         <div>
             <h1>Characters!</h1>
-            <Button onClick={() => setShowCreateForm(!showCreateForm)} sx={{ backgroundColor: '#5E3914', color: 'white' }}  ><AddCircleIcon/>Add Character</Button>
-            {showCreateForm && <CreateCharacter handleSubmitCharacter={handleSubmitCharacter} handleEditCharacter={handleEditCharacter} onEditSuccess={() => window.location.href = '/characters'}/>}
-            <Grid container spacing={3} padding={1}>
+
+            {user && (
+                <Button onClick={() => setShowCreateForm(!showCreateForm)} sx={{ backgroundColor: '#5E3914', color: 'white' }}>
+                    <AddCircleIcon /> Add Character
+                </Button>
+            )}
+            {showCreateForm && <CreateCharacter handleSubmitCharacter={handleSubmitCharacter} handleEditCharacter={handleEditCharacter} onEditSuccess={() => window.location.href = '/characters'} />}            <Slider {...settings}>
                 {characters.map((character, index) => (
-                    <Grid item key={character._id} xs={12} sm={6} md={4} lg={3}>
+                    <div key={character._id}>
                         <StyledCard>
-                            <CardHeader
+                           {user && <CardHeader
                                 action={
                                     user._id === character.user._id &&
                                     <Link to={`/characters/edit/${character._id}`}>
@@ -107,7 +124,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
                                 }
                                 title={character.name}
                                 subheader={character.user.name}
-                            />
+                            />}
                             <CardMedia
                                 component="img"
                                 image={character.imageUrl}
@@ -116,7 +133,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
                                 <Typography variant="body2" color="text.secondary">{character.tags}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                {user._id === character.user._id &&
+                                {user && user._id === character.user._id &&
                                     <StyledIconButton onClick={() => deleteCharacter(character._id)} aria-label="delete">
                                         <DeleteForeverRoundedIcon />
                                     </StyledIconButton>
@@ -155,9 +172,9 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
                             </Collapse>
                         </StyledCard>
                         {characterData && <EditCharacter character={characterData} handleEditCharacter={handleEditCharacter} />}
-                    </Grid>
+                    </div>
                 ))}
-            </Grid>
+            </Slider>
         </div>
     );
 }

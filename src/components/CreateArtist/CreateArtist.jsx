@@ -47,6 +47,7 @@ function CreateArtist({ userId }) {
                         name="title"
                         value={artist.title}
                         onChange={handleChange}
+                        sx={{ backgroundColor: '#C8A382'}}
                         fullWidth
                     />
                 </Box>
@@ -58,6 +59,7 @@ function CreateArtist({ userId }) {
                         name="tags"
                         className="tags-input"
                         onChange={handleChange}
+                        sx={{ backgroundColor: '#C8A382'}}
                         fullWidth
                         
                     />
@@ -70,6 +72,7 @@ function CreateArtist({ userId }) {
                         name="notes"
                         className="tags-input"
                         onChange={handleChange}
+                        sx={{ backgroundColor: '#C8A382'}}
                         fullWidth
                         
                     />
@@ -82,6 +85,7 @@ function CreateArtist({ userId }) {
                         name="imageUrl"
                         value={artist.imageUrl}
                         onChange={handleChange}
+                        sx={{ backgroundColor: '#C8A382'}}
                         fullWidth
                     />
                 </Box>
@@ -93,6 +97,7 @@ function CreateArtist({ userId }) {
                         name="sourceUrl"
                         value={artist.sourceUrl}
                         onChange={handleChange}
+                        sx={{ backgroundColor: '#C8A382'}}
                         fullWidth
                     />
                 </Box>

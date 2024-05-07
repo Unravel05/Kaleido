@@ -19,6 +19,11 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import NotesIcon from '@mui/icons-material/Notes';
 import Grid from '@mui/material/Grid';
 import EditArtist from '../../components/EditArtist/EditArtist';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import styled from '@emotion/styled';
+
 
 function ArtistsPage({ handleEditArtist }) {
   const [artists, setArtists] = useState([]);
@@ -73,6 +78,20 @@ function ArtistsPage({ handleEditArtist }) {
       setExpandedNotesId(expandedNotesId === cardId ? null : cardId);
   };
 
+  const StyledCard = styled(Card)(({ theme }) => ({
+    backgroundColor: '#B28D62',
+    maxWidth: '300px',
+    margin: '1rem 0.5rem 1rem 0rem',
+  }));
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
+
   return (
     <div>
       <h1>Artists</h1>
@@ -86,11 +105,11 @@ function ArtistsPage({ handleEditArtist }) {
         Add Art
       </Button>
       {showCreateForm && <CreateArtist handleSubmitArtist={handleSubmitArtist} handleEditArtist={handleEditArtist} onEditSuccess={() => window.location.href = '/artists'}/>}
-      <Grid container spacing={3} padding={1}>
+      <Slider {...settings}>
         {artists.map((artist, index) => (
-          <Grid item key={artist._id} xs={12} sm={6} md={4} lg={3}>
-            <Card sx={{ maxWidth: 345, bgcolor: "#B28D62" }}>
-              <CardHeader
+          <div key={artist._id}>
+            <StyledCard>
+              {user && <CardHeader
                 action={
                   user._id === artist.user._id &&
                   <Link to={`/artists/edit/${artist._id}`}>
@@ -101,7 +120,7 @@ function ArtistsPage({ handleEditArtist }) {
                 }
                 title={artist.title}
                 subheader={artist.user.name}
-              />
+              />}
               <CardMedia
                 component="img"
                 image={artist.imageUrl}
@@ -110,7 +129,7 @@ function ArtistsPage({ handleEditArtist }) {
                 <Typography variant="body2" color="text.secondary">{artist.tags}</Typography>
               </CardContent>
               <CardActions disableSpacing>
-                {user._id === artist.user._id &&
+                {user && user._id === artist.user._id &&
                   <IconButton onClick={() => deleteArtist(artist._id)} aria-label="delete">
                     <DeleteForeverRoundedIcon />
                   </IconButton>
@@ -133,15 +152,13 @@ function ArtistsPage({ handleEditArtist }) {
                   <Typography paragraph>{artist.notes}</Typography>
                 </CardContent>
               </Collapse>
-            </Card>
+            </StyledCard>
             {artistData && <EditArtist artist={artistData} handleEditArtist={handleEditArtist} />}
-          </Grid>
+          </div>
         ))}
-      </Grid>
+      </Slider>
     </div>
   );
 }
 
 export default ArtistsPage;
-
-

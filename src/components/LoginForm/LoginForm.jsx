@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import * as usersService from '../../utilities/users-service';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 export default function LoginForm({ setUser }) {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -19,6 +21,8 @@ export default function LoginForm({ setUser }) {
     setError('');
   }
 
+const navigate = useNavigate()
+
   async function handleSubmit(evt) {
     // Prevent form from being submitted to the server
     evt.preventDefault();
@@ -28,6 +32,7 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
+      navigate('/')
     } catch {
       setError('Log In Failed - Try Again');
     }
@@ -35,44 +40,45 @@ export default function LoginForm({ setUser }) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
-      <Button variant="contained" onClick={() => setShowLoginForm(!showLoginForm)}>
-        {showLoginForm ? 'Log In' : 'Log In!'}
+      <Button variant="contained" sx={{ bgcolor: '#5E3914', color: 'white', mt: 2 }} onClick={() => setShowLoginForm(!showLoginForm)}>
+        {showLoginForm ? 'Log In' : 'Log In'}
       </Button>
       {showLoginForm && (
         <>
-          <Typography variant="h5" gutterBottom>Log In</Typography>
-          <form autoComplete="off" onSubmit={handleSubmit}>
-            <TextField
-              label="Email"
-              type="text"
-              name="email"
-              value={credentials.email}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              label="Password"
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <Button type="submit" variant="contained" color="primary" size="large" fullWidth sx={{ mt: 2 }}>
-              Log In
-            </Button>
-          </form>
-          <Typography variant="body1" mt={2}>
-            Don't have an account? <Link to="/signup">Sign up</Link>
-          </Typography>
-          <Typography variant="body1" mt={1} color="error">
-            {error}
-          </Typography>
-        </>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <TextField
+            label="Email"
+            type="text"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            sx={{ backgroundColor: '#C8A382'}}
+            required
+          />
+          <TextField
+            label="Password"
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            sx={{ backgroundColor: '#C8A382'}}
+            required
+          />
+          <Button type="submit" variant="contained" sx={{ bgcolor: '#5E3914', color: 'white', mt: 2 }} size="large" fullWidth >
+            <LoginIcon/>
+          </Button>
+        </form>
+        <Typography variant="body1" mt={2}>
+          Don't have an account? <Link to="/signup" style={{ color: '#5E3914' }}>Sign up</Link>
+        </Typography>
+        <Typography variant="body1" mt={1} color="error">
+          {error}
+        </Typography>
+      </>
       )}
     </Box>
   );
