@@ -116,7 +116,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
                                 <Typography variant="body2" color="text.secondary">{character.tags}</Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                {user._id === character.user &&
+                                {user._id === character.user._id &&
                                     <StyledIconButton onClick={() => deleteCharacter(character._id)} aria-label="delete">
                                         <DeleteForeverRoundedIcon />
                                     </StyledIconButton>
