@@ -1,12 +1,12 @@
 import React from 'react';
-import './MainPage.css'; // Import your CSS file for styling
+import './MainPage.css'; 
 import * as character from '../../utilities/characters-api';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 
 function MainPage() {
-  // Check if the user is logged in
+  
   const user = getUser();
 
   return (

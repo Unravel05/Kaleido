@@ -28,8 +28,7 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
     
     await handleEditCharacter(character._id, editedCharacter);
     navigate('/characters')
-    // Call the onSaveSuccess callback to handle navigation after saving changes
-    // onSaveSuccess();
+    
   };
 
   return (

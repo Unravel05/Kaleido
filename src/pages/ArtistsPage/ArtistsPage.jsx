@@ -39,7 +39,7 @@ function ArtistsPage({ handleEditArtist }) {
   const fetchArtists = async () => {
     try {
       const data = await artist.getArtist();
-      setArtists(data); // Initialize with an empty array if data is undefined
+      setArtists(data); 
     } catch (error) {
       console.error('Error fetching artists:', error);
     }
@@ -49,7 +49,7 @@ function ArtistsPage({ handleEditArtist }) {
       try {
           await artist.saveArtist(newArtist);
           setArtists(prevArtists => [...prevArtists, newArtist]);
-          setShowCreateForm(false); // Hide the form after submission
+          setShowCreateForm(false); 
       } catch (error) {
           console.error('Error saving artist:', error);
       }
@@ -70,8 +70,7 @@ function ArtistsPage({ handleEditArtist }) {
   };
 
   const handleEditSuccess = () => {
-      // Redirect to artistsPage
-      window.location.reload(); // Refresh the page
+      window.location.reload();
   };
 
   const handleExpandPersonalityClick = (cardId) => {

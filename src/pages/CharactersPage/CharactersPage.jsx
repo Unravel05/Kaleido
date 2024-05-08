@@ -49,7 +49,7 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
         try {
             await character.saveCharacter(newCharacter);
             setCharacters(prevCharacters => [...prevCharacters, newCharacter]);
-            setShowCreateForm(false); // Hide the form after submission
+            setShowCreateForm(false); 
         } catch (error) {
             console.error('Error saving character:', error);
         }
@@ -70,8 +70,8 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
     };
 
     const handleEditSuccess = () => {
-        // Redirect to CharactersPage
-        window.location.reload(); // Refresh the page
+        
+        window.location.reload();
     };
 
     const handleExpandPersonalityClick = (cardId) => {

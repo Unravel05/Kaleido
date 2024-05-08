@@ -25,7 +25,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
     
     await handleEditArtist(artist._id, editedArtist);
     
-    // Call the onEditSuccess callback to redirect
+    
     if (onEditSuccess) {
       onEditSuccess();
     }

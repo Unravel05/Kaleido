@@ -40,7 +40,7 @@ export default function NavBar({ user, setUser }) {
         <Button 
           onClick={handleMenuClick} 
           color="inherit"
-          sx={{ color: '#000000' }} // Black text color
+          sx={{ color: '#000000' }} 
         >
           {user ? `Welcome ${user.name}` : <MenuIcon/>}
         </Button>
