@@ -29,7 +29,7 @@ Welcome to Kaleido, the ultimate platform for unleashing your creativity! Dive i
 
 # Getting Started
 
-<Link to="https://kaleido-eec499ee0568.herokuapp.com/">Kaleido</Link>
+<a href="https://kaleido-eec499ee0568.herokuapp.com/">Kaleido</a>
 
 # Next Steps
 
