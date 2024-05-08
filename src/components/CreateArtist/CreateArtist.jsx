@@ -14,6 +14,8 @@ function CreateArtist({ userId }) {
         title: '',
         tags: [''],
         imageUrl: '',
+        notes: '',
+        sourceUrl: '',
         user: userId 
     });
 
@@ -27,7 +29,7 @@ function CreateArtist({ userId }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        artistAPI.saveArtist(artist) // Changed from saveCharacter to saveArtist
+        artistAPI.saveArtist(artist) 
             .then(() => {
                 window.location.reload();
             })

@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const artistSchema = new Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    name: {type: String, required: true},
     title: {type: String, required: true},
     tags: [String],
     notes: {type: String, required: true},

@@ -13,8 +13,8 @@ import EditArtistPage from '../EditArtistPage/EditArtistPage';
 import * as artistApi from '../../utilities/artists-api'
 import MainPage from '../MainPage/MainPage';
 import Login from '../Login/Login';
-import UserPage from '../UserPage/UserPage';
 import * as userApi from '../../utilities/users-api'
+import UserPage from '../UserPage/UserPage';
 
 
 
@@ -62,7 +62,7 @@ export default function App() {
               {/* Route components in here */}
               <Route path="/" element={<MainPage />} />
               <Route path="/artists" element={<ArtistsPage />} />
-              <Route path="/users" element={<UserPage />} />
+              
               <Route path="/characters" element={<CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>} />
               <Route path="/characters/edit/:characterId" element={<EditPage handleEditCharacter={handleEditCharacter}/>} />
               <Route path="/artists/edit/:artistId" element={<EditArtistPage handleEditArtist={handleEditArtist}/>} />
