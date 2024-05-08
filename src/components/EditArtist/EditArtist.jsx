@@ -4,6 +4,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import PinterestIcon from '@mui/icons-material/Pinterest';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import LabelIcon from '@mui/icons-material/Label';
+import TitleIcon from '@mui/icons-material/Title';
+import NotesIcon from '@mui/icons-material/Notes';
 
 function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
   const [editedArtist, setEditedArtist] = useState(artist);
@@ -32,7 +36,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
       <form onSubmit={handleSubmit}>
         <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label="Title"
+            label= <TitleIcon/>
             type="text"
             name="title"
             value={editedArtist.title}
@@ -43,7 +47,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
         </Box>
         <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label="Tags"
+            label= <LabelIcon/>
             type="text"
             value={editedArtist.tags}
             name="tags"
@@ -55,7 +59,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
         </Box>
         <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label="Notes"
+            label= <NotesIcon/>
             type="text"
             value={editedArtist.notes}
             name="tags"
@@ -67,7 +71,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
         </Box>
         <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label="Image URL"
+            label= <CropOriginalIcon/>
             type="text"
             placeholder="Link"
             name="imageUrl"
@@ -79,7 +83,7 @@ function EditArtist({ artist, handleEditArtist, onEditSuccess }) {
         </Box>
         <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label={<PinterestIcon />}
+            label= <PinterestIcon/>
             type="text"
             placeholder="Link"
             name="sourceUrl"

@@ -4,6 +4,13 @@ import './createCharacter.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import TitleIcon from '@mui/icons-material/Title';
+import LabelIcon from '@mui/icons-material/Label';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import PanoramaIcon from '@mui/icons-material/Panorama';
+import ShareIcon from '@mui/icons-material/Share';
 
 function CreateCharacter({ userId }) {
     const [character, setCharacter] = useState({
@@ -40,7 +47,8 @@ function CreateCharacter({ userId }) {
             <form onSubmit={handleSubmit}>
                 <Box sx={{ mb: 2, marginTop: '1rem' }}> 
                     <TextField 
-                        label="Name" 
+                        label= <TitleIcon/>
+                        placeholder="Name" 
                         type="text" 
                         name="name" 
                         value={character.name} 
@@ -51,7 +59,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="Tags" 
+                        label= <LabelIcon/> 
+                        placeholder="Tags" 
                         type="text" 
                         name="tags" 
                         value={character.tags} 
@@ -63,7 +72,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="Personality" 
+                        label=<EmojiPeopleIcon/>
+                        placeholder="Personality" 
                         type="text" 
                         name="personality" 
                         value={character.personality} 
@@ -74,7 +84,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="Relationships" 
+                        label=<FavoriteIcon/> 
+                        placeholder="Relationships" 
                         type="text" 
                         name='relationships' 
                         value={character.relationships} 
@@ -85,7 +96,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="History" 
+                        label=<HistoryEduIcon/>
+                        placeholder="History" 
                         type="text" 
                         name="history" 
                         value={character.history} 
@@ -96,7 +108,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="Image URL" 
+                        label=<PanoramaIcon/> 
+                        placeholder="Image URL" 
                         type="text" 
                         name="imageUrl" 
                         value={character.imageUrl} 
@@ -107,7 +120,8 @@ function CreateCharacter({ userId }) {
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <TextField 
-                        label="Source URL" 
+                        label=<ShareIcon/>
+                        placeholder="Source URL" 
                         type="text" 
                         name="sourceUrl" 
                         value={character.sourceUrl} 

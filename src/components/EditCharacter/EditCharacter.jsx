@@ -3,6 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import TitleIcon from '@mui/icons-material/Title';
+import LabelIcon from '@mui/icons-material/Label';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import PanoramaIcon from '@mui/icons-material/Panorama';
+import ShareIcon from '@mui/icons-material/Share';
 
 function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
   const [editedCharacter, setEditedCharacter] = useState(character);
@@ -30,7 +37,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
       <form onSubmit={handleSubmit}>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Name" 
+            label= <TitleIcon/>
+            placeholder="Name" 
             type="text" 
             name="name" 
             value={editedCharacter.name} 
@@ -42,7 +50,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Tags" 
+            label= <LabelIcon/> 
+            placeholder="Tags" 
             type="text" 
             name="tags" 
             value={editedCharacter.tags} 
@@ -53,7 +62,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Personality" 
+            label=<EmojiPeopleIcon/>
+            placeholder="Personality" 
             type="text" 
             name="personality" 
             value={editedCharacter.personality} 
@@ -64,7 +74,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Relationships" 
+            label=<FavoriteIcon/> 
+            placeholder="Relationships" 
             type="text" 
             name="relationships" 
             value={editedCharacter.relationships} 
@@ -75,7 +86,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="History" 
+            label=<HistoryEduIcon/>
+            placeholder="History" 
             type="text" 
             name="history" 
             value={editedCharacter.history} 
@@ -86,7 +98,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Image URL" 
+            label=<PanoramaIcon/> 
+            placeholder="Image URL" 
             type="text" 
             name="imageUrl" 
             value={editedCharacter.imageUrl} 
@@ -97,7 +110,8 @@ function EditCharacter({ character, handleEditCharacter, onSaveSuccess }) {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField 
-            label="Source URL" 
+            label=<ShareIcon/>
+            placeholder="Source URL" 
             type="text" 
             name="sourceUrl" 
             value={editedCharacter.sourceUrl} 

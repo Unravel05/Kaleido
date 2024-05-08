@@ -84,8 +84,9 @@ function CharactersPage({ characters, setCharacters, handleEditCharacter }) {
 
     const StyledCard = styled(Card)(({ theme }) => ({
         backgroundColor: '#B28D62',
-        maxWidth: '300px',
-        margin: '1rem 0.5rem 1rem 0rem',
+        width: '280px',
+        alignContent: 'center',
+        margin: '1% 1% 1% 0%',
     }));
 
     const StyledIconButton = styled(IconButton)(({ theme }) => ({
