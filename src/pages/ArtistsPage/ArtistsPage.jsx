@@ -25,8 +25,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled from '@emotion/styled';
 
 
-function ArtistsPage({ handleEditArtist }) {
-  const [artists, setArtists] = useState([]);
+function ArtistsPage({ artists, setArtists, handleEditArtist }) {
   const [artistData, setArtistData] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [expandedNotesId, setExpandedNotesId] = useState(null);
@@ -39,7 +38,7 @@ function ArtistsPage({ handleEditArtist }) {
   const fetchArtists = async () => {
     try {
       const data = await artist.getArtist();
-      setArtists(data || []); // Initialize with an empty array if data is undefined
+      setArtists(data)
     } catch (error) {
       console.error('Error fetching artists:', error);
     }
@@ -95,17 +94,12 @@ function ArtistsPage({ handleEditArtist }) {
   return (
     <div>
       <h1>Artists</h1>
-      <Button 
-        onClick={() => setShowCreateForm(!showCreateForm)}
-        sx={{
-          color: "#69482B"
-        }}
-      >
-        <AddCircleIcon sx={{ mr: 1, color: "#5E3914" }} /> {/* Add margin to the right of the icon */}
-        Add Art
-      </Button>
-      {showCreateForm && <CreateArtist handleSubmitArtist={handleSubmitArtist} handleEditArtist={handleEditArtist} onEditSuccess={() => window.location.href = '/artists'}/>}
-      <Slider {...settings}>
+      {user && (
+          <Button onClick={() => setShowCreateForm(!showCreateForm)} sx={{ backgroundColor: '#5E3914', color: 'white' }}>
+              <AddCircleIcon /> Add Art
+          </Button>
+            )}
+      {showCreateForm && <CreateArtist handleSubmitArtist={handleSubmitArtist} handleEditArtist={handleEditArtist} onEditSuccess={() => window.location.href = '/artists'}/>}     <Slider {...settings}>
         {artists.map((artist, index) => (
           <div key={artist._id}>
             <StyledCard>

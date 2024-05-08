@@ -22,6 +22,7 @@ function CreateCharacter({ userId }) {
             [name]: value,
         }));
     }
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +38,7 @@ function CreateCharacter({ userId }) {
     return (
         <div className="ficha">
             <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 2, marginTop: '1rem' }}> {/* Add marginTop here */}
+                <Box sx={{ mb: 2, marginTop: '1rem' }}> 
                     <TextField 
                         label="Name" 
                         type="text" 
@@ -45,7 +46,7 @@ function CreateCharacter({ userId }) {
                         value={character.name} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -57,7 +58,7 @@ function CreateCharacter({ userId }) {
                         className="tags-input" 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}}// Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}}
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -68,7 +69,7 @@ function CreateCharacter({ userId }) {
                         value={character.personality} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -79,7 +80,7 @@ function CreateCharacter({ userId }) {
                         value={character.relationships} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -90,7 +91,7 @@ function CreateCharacter({ userId }) {
                         value={character.history} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -101,7 +102,7 @@ function CreateCharacter({ userId }) {
                         value={character.imageUrl} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Box sx={{ mb: 2 }}>
@@ -112,10 +113,11 @@ function CreateCharacter({ userId }) {
                         value={character.sourceUrl} 
                         onChange={handleChange} 
                         fullWidth 
-                        sx={{ backgroundColor: '#C8A382'}} // Apply color to text field
+                        sx={{ backgroundColor: '#C8A382'}} 
                     />
                 </Box>
                 <Button variant="contained" type="submit" sx={{ backgroundColor: '#5E3914', color: 'white' }}>Create your own!</Button>
+            
             </form>
         </div>
     );
