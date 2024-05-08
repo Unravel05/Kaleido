@@ -1,36 +1,37 @@
-// import React, { useState, useEffect } from "react";
-// import * as userService from '../../utilities/users-service'; // Importing userService
-// import CharactersPage from "../CharactersPage/CharactersPage";
+import React, { useState, useEffect } from "react";
+import * as userService from '../../utilities/users-service'; // Importing userService
+import CharactersPage from "../CharactersPage/CharactersPage";
 
-// function UserPage() {
-//     const [user, setUser] = useState(userService.getUser());
-//     const [users, setUsers] = useState([]);
 
-//     useEffect(() => {
-//         fetchUsers();
-//     }, []);
+function UserPage({characters, setCharacters, handleEditCharacter}) {
+    const [user, setUser] = useState(userService.getUser());
+    const [users, setUsers] = useState([]);
 
-//     const fetchUsers = async () => {
-//         try {
-//             // You can remove the import of userAPI and use userService.getUser directly
-//             const data = userService.getUser(); // Correct usage of getUser from userService
-//             setUsers(data);
-//         } catch (error) {
-//             console.error('Error fetching user:', error);
-//         }
-//     };
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
-//     return (
-//         <div>
-//             <h2>Hola!</h2>
-//             <h1>{user.name}</h1>
-//             <p>{user.email}</p>
-//             <p>{user.password}</p>
-//             {/* Render the CharactersPage component */}
-//             <CharactersPage users={users} setUsers={setUsers} />
-//         </div>
-//     );
-// }
+    const fetchUsers = async () => {
+        try {
+            // You can remove the import of userAPI and use userService.getUser directly
+            const data = userService.getUser(); // Correct usage of getUser from userService
+            setUsers(data);
+        } catch (error) {
+            console.error('Error fetching user:', error);
+        }
+    };
 
-// export default UserPage;
+    return (
+        <div>
+            <h2>Hola!</h2>
+            <h1>{user.name}</h1>
+            <p>{user.email}</p>
+            <p>{user.password}</p>
+            {/* Render the CharactersPage component */}
+            <CharactersPage characters={characters} setCharacters={setCharacters} handleEditCharacter={handleEditCharacter}/>
+        </div>
+    );
+}
+
+export default UserPage;
 
